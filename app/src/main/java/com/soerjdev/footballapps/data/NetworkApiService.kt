@@ -1,19 +1,17 @@
 package com.soerjdev.footballapps.data
 
-import android.content.Context
 import com.soerjdev.footballapps.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class NetworkApiService {
+object NetworkApiService {
 
-    fun executeTask(context: Context): ApiEndPoints = getApiUrl(
-        context = context
+    fun executeTask(): ApiEndPoints = getApiUrl(
     ).create(ApiEndPoints::class.java)
 
-    private fun getApiUrl(context: Context): Retrofit {
+    private fun getApiUrl(): Retrofit {
         return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
             .client(getInterceptor())
             .addConverterFactory(GsonConverterFactory.create())

@@ -1,4 +1,4 @@
-package com.soerjdev.footballapps.ui
+package com.soerjdev.footballapps.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
