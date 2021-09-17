@@ -1,37 +1,40 @@
 package com.soerjdev.footballapps.data.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class Team(
     @SerializedName("teams")
     val teams: List<Team>?
 ) {
+    @Parcelize
     data class Team(
         @SerializedName("idAPIfootball")
         val idAPIfootball: String?,
         @SerializedName("idLeague")
         val idLeague: String?,
         @SerializedName("idLeague2")
-        val idLeague2: Any?,
+        val idLeague2: String?,
         @SerializedName("idLeague3")
-        val idLeague3: Any?,
+        val idLeague3: String?,
         @SerializedName("idLeague4")
-        val idLeague4: Any?,
+        val idLeague4: String?,
         @SerializedName("idLeague5")
-        val idLeague5: Any?,
+        val idLeague5: String?,
         @SerializedName("idLeague6")
-        val idLeague6: Any?,
+        val idLeague6: String?,
         @SerializedName("idLeague7")
-        val idLeague7: Any?,
+        val idLeague7: String?,
         @SerializedName("idSoccerXML")
-        val idSoccerXML: Any?,
+        val idSoccerXML: String?,
         @SerializedName("idTeam")
         val idTeam: String?,
         @SerializedName("intFormedYear")
         val intFormedYear: String?,
         @SerializedName("intLoved")
-        val intLoved: Any?,
+        val intLoved: String?,
         @SerializedName("intStadiumCapacity")
         val intStadiumCapacity: String?,
         @SerializedName("strAlternate")
@@ -39,37 +42,37 @@ data class Team(
         @SerializedName("strCountry")
         val strCountry: String?,
         @SerializedName("strDescriptionCN")
-        val strDescriptionCN: Any?,
+        val strDescriptionCN: String?,
         @SerializedName("strDescriptionDE")
-        val strDescriptionDE: Any?,
+        val strDescriptionDE: String?,
         @SerializedName("strDescriptionEN")
         val strDescriptionEN: String?,
         @SerializedName("strDescriptionES")
-        val strDescriptionES: Any?,
+        val strDescriptionES: String?,
         @SerializedName("strDescriptionFR")
-        val strDescriptionFR: Any?,
+        val strDescriptionFR: String?,
         @SerializedName("strDescriptionHU")
-        val strDescriptionHU: Any?,
+        val strDescriptionHU: String?,
         @SerializedName("strDescriptionIL")
-        val strDescriptionIL: Any?,
+        val strDescriptionIL: String?,
         @SerializedName("strDescriptionIT")
-        val strDescriptionIT: Any?,
+        val strDescriptionIT: String?,
         @SerializedName("strDescriptionJP")
-        val strDescriptionJP: Any?,
+        val strDescriptionJP: String?,
         @SerializedName("strDescriptionNL")
-        val strDescriptionNL: Any?,
+        val strDescriptionNL: String?,
         @SerializedName("strDescriptionNO")
-        val strDescriptionNO: Any?,
+        val strDescriptionNO: String?,
         @SerializedName("strDescriptionPL")
-        val strDescriptionPL: Any?,
+        val strDescriptionPL: String?,
         @SerializedName("strDescriptionPT")
-        val strDescriptionPT: Any?,
+        val strDescriptionPT: String?,
         @SerializedName("strDescriptionRU")
-        val strDescriptionRU: Any?,
+        val strDescriptionRU: String?,
         @SerializedName("strDescriptionSE")
-        val strDescriptionSE: Any?,
+        val strDescriptionSE: String?,
         @SerializedName("strDivision")
-        val strDivision: Any?,
+        val strDivision: String?,
         @SerializedName("strFacebook")
         val strFacebook: String?,
         @SerializedName("strGender")
@@ -81,17 +84,17 @@ data class Team(
         @SerializedName("strLeague")
         val strLeague: String?,
         @SerializedName("strLeague2")
-        val strLeague2: Any?,
+        val strLeague2: String?,
         @SerializedName("strLeague3")
-        val strLeague3: Any?,
+        val strLeague3: String?,
         @SerializedName("strLeague4")
-        val strLeague4: Any?,
+        val strLeague4: String?,
         @SerializedName("strLeague5")
-        val strLeague5: Any?,
+        val strLeague5: String?,
         @SerializedName("strLeague6")
-        val strLeague6: Any?,
+        val strLeague6: String?,
         @SerializedName("strLeague7")
-        val strLeague7: Any?,
+        val strLeague7: String?,
         @SerializedName("strLocked")
         val strLocked: String?,
         @SerializedName("strManager")
@@ -107,32 +110,32 @@ data class Team(
         @SerializedName("strStadiumLocation")
         val strStadiumLocation: String?,
         @SerializedName("strStadiumThumb")
-        val strStadiumThumb: Any?,
+        val strStadiumThumb: String?,
         @SerializedName("strTeam")
         val strTeam: String?,
         @SerializedName("strTeamBadge")
         val strTeamBadge: String?,
         @SerializedName("strTeamBanner")
-        val strTeamBanner: Any?,
+        val strTeamBanner: String?,
         @SerializedName("strTeamFanart1")
-        val strTeamFanart1: Any?,
+        val strTeamFanart1: String?,
         @SerializedName("strTeamFanart2")
-        val strTeamFanart2: Any?,
+        val strTeamFanart2: String?,
         @SerializedName("strTeamFanart3")
-        val strTeamFanart3: Any?,
+        val strTeamFanart3: String?,
         @SerializedName("strTeamFanart4")
-        val strTeamFanart4: Any?,
+        val strTeamFanart4: String?,
         @SerializedName("strTeamJersey")
-        val strTeamJersey: Any?,
+        val strTeamJersey: String?,
         @SerializedName("strTeamLogo")
-        val strTeamLogo: Any?,
+        val strTeamLogo: String?,
         @SerializedName("strTeamShort")
-        val strTeamShort: Any?,
+        val strTeamShort: String?,
         @SerializedName("strTwitter")
         val strTwitter: String?,
         @SerializedName("strWebsite")
         val strWebsite: String?,
         @SerializedName("strYoutube")
         val strYoutube: String?
-    )
+    ): Parcelable
 }

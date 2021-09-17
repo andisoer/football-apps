@@ -32,8 +32,10 @@ class SearchTeamActivity : AppCompatActivity() {
 
     private fun initUi() {
 
-        searchTeamAdapter = SearchTeamRecyclerAdapter(context = this) {
-            startActivity(Intent(this, DetailTeamActivity::class.java))
+        searchTeamAdapter = SearchTeamRecyclerAdapter(context = this) {team ->
+            val intent = Intent(this, DetailTeamActivity::class.java)
+            intent.putExtra(DetailTeamActivity.DETAIL_TEAM_KEY, team)
+            startActivity(intent)
         }
 
         binding.apply {

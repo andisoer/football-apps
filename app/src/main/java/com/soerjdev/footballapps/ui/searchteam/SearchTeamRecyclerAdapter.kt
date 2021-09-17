@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.soerjdev.footballapps.data.model.Team
 import com.soerjdev.footballapps.databinding.ItemTeamBinding
 
@@ -38,6 +39,10 @@ class SearchTeamRecyclerAdapter(
                 textViewCountry.text = team.strCountry
                 textViewLeague.text = team.strLeague
                 textViewSport.text = team.strSport
+
+                imageViewTeamBadge.load(
+                    team.strTeamBadge
+                )
             }
         }
     }
