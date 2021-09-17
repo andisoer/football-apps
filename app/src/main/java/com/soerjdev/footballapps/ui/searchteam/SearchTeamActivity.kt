@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.soerjdev.footballapps.databinding.ActivitySearchTeamBinding
 import com.soerjdev.footballapps.utils.ResourceStatus
 import com.soerjdev.footballapps.utils.gone
+import com.soerjdev.footballapps.utils.hideKeyboard
 import com.soerjdev.footballapps.utils.show
 
 class SearchTeamActivity : AppCompatActivity() {
@@ -38,6 +39,10 @@ class SearchTeamActivity : AppCompatActivity() {
                     return@setOnEditorActionListener true
                 }
                 return@setOnEditorActionListener false
+            }
+
+            imageViewBack.setOnClickListener {
+                onBackPressed()
             }
 
             recyclerViewSearchTeam.adapter = searchTeamAdapter
@@ -79,7 +84,12 @@ class SearchTeamActivity : AppCompatActivity() {
         val teamName = binding.editTextSearchTeam.text.toString().trim()
         if (teamName.isEmpty()) return
 
+        hideKeyboard()
         viewModel.searchTeam(teamName = teamName)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }
