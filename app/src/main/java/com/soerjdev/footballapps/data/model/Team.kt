@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Team(
     @SerializedName("teams")
-    val teams: List<Team?>?
+    val teams: List<Team>?
 ) {
     data class Team(
         @SerializedName("idAPIfootball")

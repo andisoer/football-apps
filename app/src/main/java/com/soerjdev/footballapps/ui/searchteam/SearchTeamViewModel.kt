@@ -28,10 +28,10 @@ class SearchTeamViewModel : ViewModel() {
 
             try {
 
-                val dataState = teamRepository.searchTeam(teamName = teamName)
+                val response = teamRepository.searchTeam(teamName = teamName)
 
-                if (dataState.isSuccessful) {
-                    val team = dataState.body()
+                if (response.isSuccessful) {
+                    val team = response.body()
 
                     _searchedTeam.postValue(
                         ResourceStatus.Success(data = team)
