@@ -1,11 +1,13 @@
 package com.soerjdev.footballapps.ui.searchteam
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.soerjdev.footballapps.databinding.ActivitySearchTeamBinding
+import com.soerjdev.footballapps.ui.detailteam.DetailTeamActivity
 import com.soerjdev.footballapps.utils.ResourceStatus
 import com.soerjdev.footballapps.utils.gone
 import com.soerjdev.footballapps.utils.hideKeyboard
@@ -30,7 +32,9 @@ class SearchTeamActivity : AppCompatActivity() {
 
     private fun initUi() {
 
-        searchTeamAdapter = SearchTeamRecyclerAdapter(context = this)
+        searchTeamAdapter = SearchTeamRecyclerAdapter(context = this) {
+            startActivity(Intent(this, DetailTeamActivity::class.java))
+        }
 
         binding.apply {
             editTextSearchTeam.setOnEditorActionListener { _, actionId, _ ->

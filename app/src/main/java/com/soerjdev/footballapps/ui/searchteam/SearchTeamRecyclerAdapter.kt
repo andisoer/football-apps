@@ -7,14 +7,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.soerjdev.footballapps.data.model.Team
 import com.soerjdev.footballapps.databinding.ItemTeamBinding
 
-class SearchTeamRecyclerAdapter(private val context: Context): RecyclerView.Adapter<SearchTeamRecyclerAdapter.ViewHolder>() {
+class SearchTeamRecyclerAdapter(
+    private val context: Context,
+    private val onClick: (Team.Team) -> Unit
+) :
+    RecyclerView.Adapter<SearchTeamRecyclerAdapter.ViewHolder>() {
 
     private val teamList = mutableListOf<Team.Team>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(context)
         val binding = ItemTeamBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(binding).apply {
+            binding.root.setOnClickListener {
+                onClick(getItem(adapterPosition))
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -23,7 +31,7 @@ class SearchTeamRecyclerAdapter(private val context: Context): RecyclerView.Adap
 
     override fun getItemCount() = teamList.size
 
-    class ViewHolder(private val binding: ItemTeamBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemTeamBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(team: Team.Team) {
             binding.apply {
                 textViewTeamName.text = team.strTeam
@@ -42,5 +50,9 @@ class SearchTeamRecyclerAdapter(private val context: Context): RecyclerView.Adap
     fun clearTeamList() {
         this.teamList.clear()
         notifyDataSetChanged()
+    }
+
+    private fun getItem(position: Int) :Team.Team {
+        return teamList[position]
     }
 }
