@@ -15,6 +15,15 @@
         app:layout_constraintTop_toTopOf="parent"
         android:text="Go To Search"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonChooseCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_country"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonToSearch"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearchLeague"
         android:layout_width="match_parent"
@@ -22,6 +31,15 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_league"
-        app:layout_constraintTop_toBottomOf="@id/buttonToSearch"/>
+        app:layout_constraintTop_toBottomOf="@id/buttonChooseCountry"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarSearchLeague"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonToSearch"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,4 +44,8 @@ class SearchLeagueAdapter(private val context: Context): RecyclerView.Adapter<Se
         return leagueList[position]
     }
 
+    fun setLeagueList(list: List<League.League>) {
+        this.leagueList.addAll(list)
+        notifyDataSetChanged()
+    }
 }
