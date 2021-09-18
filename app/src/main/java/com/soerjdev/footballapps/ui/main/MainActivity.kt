@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.soerjdev.footballapps.databinding.ActivityMainBinding
-import com.soerjdev.footballapps.ui.ChooseCountryActivity
+import com.soerjdev.footballapps.ui.choosecountry.ChooseCountryActivity
 import com.soerjdev.footballapps.ui.searchteam.SearchTeamActivity
 import com.soerjdev.footballapps.utils.ResourceStatus
 import com.soerjdev.footballapps.utils.gone

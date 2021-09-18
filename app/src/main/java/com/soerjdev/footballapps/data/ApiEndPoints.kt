@@ -1,5 +1,6 @@
 package com.soerjdev.footballapps.data
 
+import com.soerjdev.footballapps.data.model.Country
 import com.soerjdev.footballapps.data.model.League
 import com.soerjdev.footballapps.data.model.Team
 import retrofit2.Response
@@ -18,5 +19,8 @@ interface ApiEndPoints {
         @Query("c") country: String,
         @Query("s") sport: String
     ): Response<League>
+
+    @GET("all_countries.php")
+    suspend fun allCountry(): Response<Country>
 
 }

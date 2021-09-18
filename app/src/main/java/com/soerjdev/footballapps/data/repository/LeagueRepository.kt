@@ -4,7 +4,7 @@ import com.soerjdev.footballapps.data.NetworkApiService
 
 class LeagueRepository {
 
-    suspend fun  searchLeague(
+    suspend fun searchLeague(
         country: String,
         sport: String
     ) = NetworkApiService.executeTask().searchLeague(
