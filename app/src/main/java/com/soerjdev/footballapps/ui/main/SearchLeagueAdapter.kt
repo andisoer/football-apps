@@ -48,4 +48,9 @@ class SearchLeagueAdapter(private val context: Context): RecyclerView.Adapter<Se
         this.leagueList.addAll(list)
         notifyDataSetChanged()
     }
+
+    fun clearLeagueList() {
+        this.leagueList.clear()
+        notifyDataSetChanged()
+    }
 }

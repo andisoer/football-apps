@@ -1,8 +1,10 @@
 package com.soerjdev.footballapps.ui.main
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import com.soerjdev.footballapps.databinding.ActivityMainBinding
 import com.soerjdev.footballapps.ui.choosecountry.ChooseCountryActivity
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchLeagueAdapter: SearchLeagueAdapter
 
     private lateinit var viewModel: MainViewModel
+
+    private var country = "Indonesia"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +46,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             buttonChooseCountry.setOnClickListener {
-                startActivity(Intent(this@MainActivity, ChooseCountryActivity::class.java))
+                val intent = Intent(this@MainActivity, ChooseCountryActivity::class.java)
+                intentChooseCountry.launch(intent)
             }
         }
     }
@@ -76,9 +81,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getLeague() {
+        searchLeagueAdapter.clearLeagueList()
         viewModel.searchLeague(
             sport = "Soccer",
-            country = "Indonesia"
+            country = country
         )
+    }
+
+    private var intentChooseCountry = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val extras = result.data?.extras
+
+            if (extras != null) {
+                country = extras.getString(ChooseCountryActivity.CHOOSE_COUNTRY_KEY).toString()
+                getLeague()
+            }
+        }
     }
 }
