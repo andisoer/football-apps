@@ -3,7 +3,6 @@ package com.soerjdev.footballapps.ui.detailteam
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import coil.load
-import coil.transform.CircleCropTransformation
 import com.soerjdev.footballapps.data.model.Team
 import com.soerjdev.footballapps.databinding.ActivityDetailTeamBinding
 
