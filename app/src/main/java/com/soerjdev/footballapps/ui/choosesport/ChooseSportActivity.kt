@@ -3,14 +3,14 @@ package com.soerjdev.footballapps.ui.choosesport
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.soerjdev.footballapps.databinding.ActivityChooseCountryBinding
+import com.soerjdev.footballapps.databinding.ActivityChooseSportBinding
 import com.soerjdev.footballapps.utils.ResourceStatus
 import com.soerjdev.footballapps.utils.gone
 import com.soerjdev.footballapps.utils.show
 
 class ChooseSportActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityChooseCountryBinding
+    private lateinit var binding: ActivityChooseSportBinding
     private lateinit var chooseSportAdapter: ChooseSportAdapter
 
     private lateinit var viewModel: ChooseSportViewModel
@@ -21,7 +21,7 @@ class ChooseSportActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityChooseCountryBinding.inflate(layoutInflater)
+        binding = ActivityChooseSportBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initUi()
@@ -40,11 +40,11 @@ class ChooseSportActivity : AppCompatActivity() {
         }
 
         binding.apply {
-            toolbarChooseCountry.setNavigationOnClickListener {
+            toolbarChooseSport.setNavigationOnClickListener {
                 onBackPressed()
             }
 
-            recyclerViewChooseCountry.adapter = chooseSportAdapter
+            recyclerViewChooseSport.adapter = chooseSportAdapter
         }
     }
 
@@ -59,7 +59,7 @@ class ChooseSportActivity : AppCompatActivity() {
         viewModel.allSport.observe(this, { response ->
             when (response) {
                 is ResourceStatus.Loading -> {
-                    binding.progressBarCHooseCountry.show()
+                    binding.progressBarChooseSport.show()
                 }
                 is ResourceStatus.Success -> {
                     response.data?.let {
@@ -68,10 +68,10 @@ class ChooseSportActivity : AppCompatActivity() {
                         }
                     }
 
-                    binding.progressBarCHooseCountry.gone()
+                    binding.progressBarChooseSport.gone()
                 }
                 is ResourceStatus.Error -> {
-                    binding.progressBarCHooseCountry.gone()
+                    binding.progressBarChooseSport.gone()
                 }
             }
         })
