@@ -8,4 +8,8 @@ class TeamRepository {
         teamName: String
     ) = NetworkApiService.executeTask().searchTeam(teamName = teamName)
 
+    suspend fun searchTeamByLeague(
+        league: String
+    ) = NetworkApiService.executeTask().searchTeamByLeague(league = league)
+
 }

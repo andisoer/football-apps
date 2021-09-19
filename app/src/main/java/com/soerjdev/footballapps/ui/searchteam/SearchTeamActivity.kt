@@ -20,6 +20,12 @@ class SearchTeamActivity : AppCompatActivity() {
 
     private lateinit var viewModel: SearchTeamViewModel
 
+    private var league: String? = null
+
+    companion object {
+        var LEAGUE_NAME_KEY = "leagueName"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchTeamBinding.inflate(layoutInflater)
@@ -28,9 +34,17 @@ class SearchTeamActivity : AppCompatActivity() {
         initUi()
         initViewModel()
         initObserver()
+        if (league != null) {
+            searchTeamByLeague()
+        }
     }
 
     private fun initUi() {
+
+        val extras = intent.extras
+        if (extras != null) {
+            league = extras.getString(LEAGUE_NAME_KEY, null)
+        }
 
         searchTeamAdapter = SearchTeamRecyclerAdapter(context = this) {team ->
             val intent = Intent(this, DetailTeamActivity::class.java)
@@ -39,6 +53,11 @@ class SearchTeamActivity : AppCompatActivity() {
         }
 
         binding.apply {
+
+            if (league == null) {
+                textInputLayoutSearchTeam.show()
+            }
+
             editTextSearchTeam.setOnEditorActionListener { _, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     searchTeam()
@@ -47,7 +66,7 @@ class SearchTeamActivity : AppCompatActivity() {
                 return@setOnEditorActionListener false
             }
 
-            imageViewBack.setOnClickListener {
+            toolbarSearchTeam.setNavigationOnClickListener {
                 onBackPressed()
             }
 
@@ -92,6 +111,10 @@ class SearchTeamActivity : AppCompatActivity() {
 
         hideKeyboard()
         viewModel.searchTeam(teamName = teamName)
+    }
+
+    private fun searchTeamByLeague() {
+        viewModel.searchTeamByLeague(league = league!!)
     }
 
     override fun onBackPressed() {

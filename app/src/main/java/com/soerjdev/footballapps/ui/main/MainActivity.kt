@@ -37,7 +37,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initUi() {
 
-        searchLeagueAdapter = SearchLeagueAdapter(context = this)
+        searchLeagueAdapter = SearchLeagueAdapter(context = this) { league ->
+            val intent = Intent(this, SearchTeamActivity::class.java)
+            intent.putExtra(SearchTeamActivity.LEAGUE_NAME_KEY, league.strLeague)
+            startActivity(intent)
+        }
 
         binding.apply {
 

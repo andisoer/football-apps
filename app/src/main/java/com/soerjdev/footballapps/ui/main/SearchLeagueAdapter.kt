@@ -8,7 +8,10 @@ import coil.load
 import com.soerjdev.footballapps.data.model.League
 import com.soerjdev.footballapps.databinding.ItemLeagueBinding
 
-class SearchLeagueAdapter(private val context: Context): RecyclerView.Adapter<SearchLeagueAdapter.ViewHolder>() {
+class SearchLeagueAdapter(
+    private val context: Context,
+    private val onClick: (League.League) -> Unit
+): RecyclerView.Adapter<SearchLeagueAdapter.ViewHolder>() {
 
     private val leagueList = mutableListOf<League.League>()
 
@@ -18,7 +21,11 @@ class SearchLeagueAdapter(private val context: Context): RecyclerView.Adapter<Se
     ): ViewHolder {
         val inflater = LayoutInflater.from(context)
         val binding = ItemLeagueBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(binding).apply {
+            binding.root.setOnClickListener {
+                onClick(getItem(adapterPosition))
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

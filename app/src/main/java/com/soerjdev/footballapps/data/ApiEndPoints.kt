@@ -15,7 +15,7 @@ interface ApiEndPoints {
         @Query("t") teamName: String
     ): Response<Team>
 
-    @GET("search_all_leagues.php?c=Indonesia&s=Basketball")
+    @GET("search_all_leagues.php")
     suspend fun searchLeague(
         @Query("c") country: String,
         @Query("s") sport: String
@@ -26,5 +26,11 @@ interface ApiEndPoints {
 
     @GET("all_sports.php")
     suspend fun allSport(): Response<Sport>
+
+    @GET("search_all_teams.php")
+    suspend fun searchTeamByLeague(
+        @Query("l") league: String
+    ): Response<Team>
+
 
 }
