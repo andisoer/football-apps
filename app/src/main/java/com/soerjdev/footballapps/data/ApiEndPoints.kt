@@ -2,6 +2,7 @@ package com.soerjdev.footballapps.data
 
 import com.soerjdev.footballapps.data.model.Country
 import com.soerjdev.footballapps.data.model.League
+import com.soerjdev.footballapps.data.model.Sport
 import com.soerjdev.footballapps.data.model.Team
 import retrofit2.Response
 import retrofit2.http.GET
@@ -22,5 +23,8 @@ interface ApiEndPoints {
 
     @GET("all_countries.php")
     suspend fun allCountry(): Response<Country>
+
+    @GET("all_sports.php")
+    suspend fun allSport(): Response<Sport>
 
 }

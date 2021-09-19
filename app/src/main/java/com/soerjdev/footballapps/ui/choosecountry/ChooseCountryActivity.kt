@@ -3,12 +3,8 @@ package com.soerjdev.footballapps.ui.choosecountry
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.soerjdev.footballapps.data.model.Country
 import com.soerjdev.footballapps.databinding.ActivityChooseCountryBinding
 import com.soerjdev.footballapps.utils.ResourceStatus
 import com.soerjdev.footballapps.utils.gone

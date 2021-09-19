@@ -4,4 +4,5 @@
     <string name="team_description">Team Description</string>
     <string name="team_homebase">Team Homebase</string>
     <string name="choose_country">Choose Country</string>
+    <string name="choose_sport">Choose Sport</string>
 </resources>
