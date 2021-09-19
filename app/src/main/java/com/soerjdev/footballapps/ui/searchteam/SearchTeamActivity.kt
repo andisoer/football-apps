@@ -56,6 +56,8 @@ class SearchTeamActivity : AppCompatActivity() {
 
             if (league == null) {
                 textInputLayoutSearchTeam.show()
+            } else {
+                toolbarSearchTeam.title = "Teams in $league"
             }
 
             editTextSearchTeam.setOnEditorActionListener { _, actionId, _ ->

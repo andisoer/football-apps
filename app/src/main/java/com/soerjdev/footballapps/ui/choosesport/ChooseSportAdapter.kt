@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.soerjdev.footballapps.R
 import com.soerjdev.footballapps.data.model.Sport
 import com.soerjdev.footballapps.databinding.ItemSportBinding
 
@@ -33,9 +34,13 @@ class ChooseSportAdapter(
 
     class ViewHolder(private val binding: ItemSportBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Sport.Sport) {
-            binding.imageViewSport.load(
-                item.strSportThumb
-            )
+            item.strSportThumb?.let {
+                binding.imageViewSport.load(
+                    it
+                ) {
+                    crossfade(true)
+                }
+            }
 
             binding.textViewSportName.text = item.strSport
         }

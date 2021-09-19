@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.soerjdev.footballapps.R
 import com.soerjdev.footballapps.data.model.Team
 import com.soerjdev.footballapps.databinding.ItemTeamBinding
 
@@ -40,9 +41,13 @@ class SearchTeamRecyclerAdapter(
                 textViewLeague.text = team.strLeague
                 textViewSport.text = team.strSport
 
-                imageViewTeamBadge.load(
-                    team.strTeamBadge
-                )
+                team.strTeamBadge?.let {
+                    imageViewTeamBadge.load(
+                        it
+                    ) {
+                        crossfade(true)
+                    }
+                }
             }
         }
     }
@@ -57,7 +62,7 @@ class SearchTeamRecyclerAdapter(
         notifyDataSetChanged()
     }
 
-    private fun getItem(position: Int) :Team.Team {
+    private fun getItem(position: Int): Team.Team {
         return teamList[position]
     }
 }

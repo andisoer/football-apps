@@ -4,8 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import com.soerjdev.footballapps.R
 import com.soerjdev.footballapps.databinding.ActivityMainBinding
 import com.soerjdev.footballapps.ui.choosecountry.ChooseCountryActivity
 import com.soerjdev.footballapps.ui.choosesport.ChooseSportActivity
@@ -14,7 +17,7 @@ import com.soerjdev.footballapps.utils.ResourceStatus
 import com.soerjdev.footballapps.utils.gone
 import com.soerjdev.footballapps.utils.show
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var searchLeagueAdapter: SearchLeagueAdapter
@@ -47,18 +50,22 @@ class MainActivity : AppCompatActivity() {
 
             recyclerViewSearchLeague.adapter = searchLeagueAdapter
 
-            buttonToSearch.setOnClickListener {
-                startActivity(Intent(this@MainActivity, SearchTeamActivity::class.java))
+            toolbarMain.setOnMenuItemClickListener(this@MainActivity)
+
+            buttonChooseCountry.apply {
+                text = country
+                setOnClickListener {
+                    val intent = Intent(this@MainActivity, ChooseCountryActivity::class.java)
+                    intentChooseCountry.launch(intent)
+                }
             }
 
-            buttonChooseCountry.setOnClickListener {
-                val intent = Intent(this@MainActivity, ChooseCountryActivity::class.java)
-                intentChooseCountry.launch(intent)
-            }
-
-            buttonChooseSport.setOnClickListener {
-                val intent = Intent(this@MainActivity, ChooseSportActivity::class.java)
-                intentChooseSport.launch(intent)
+            buttonChooseSport.apply {
+                text = sport
+                setOnClickListener {
+                    val intent = Intent(this@MainActivity, ChooseSportActivity::class.java)
+                    intentChooseSport.launch(intent)
+                }
             }
         }
     }
@@ -105,6 +112,7 @@ class MainActivity : AppCompatActivity() {
 
             if (extras != null) {
                 country = extras.getString(ChooseCountryActivity.CHOOSE_COUNTRY_KEY).toString()
+                binding.buttonChooseCountry.text = country
                 getLeague()
             }
         }
@@ -116,7 +124,20 @@ class MainActivity : AppCompatActivity() {
 
             if (extras != null) {
                 sport = extras.getString(ChooseSportActivity.CHOOSE_SPORT_KEY).toString()
+                binding.buttonChooseSport.text = sport
                 getLeague()
+            }
+        }
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.menuSearch -> {
+                startActivity(Intent(this@MainActivity, SearchTeamActivity::class.java))
+                true
+            }
+            else -> {
+                false
             }
         }
     }

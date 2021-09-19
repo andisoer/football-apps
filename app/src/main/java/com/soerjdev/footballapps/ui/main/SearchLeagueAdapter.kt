@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.soerjdev.footballapps.R
 import com.soerjdev.footballapps.data.model.League
 import com.soerjdev.footballapps.databinding.ItemLeagueBinding
 
 class SearchLeagueAdapter(
     private val context: Context,
     private val onClick: (League.League) -> Unit
-): RecyclerView.Adapter<SearchLeagueAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<SearchLeagueAdapter.ViewHolder>() {
 
     private val leagueList = mutableListOf<League.League>()
 
@@ -34,12 +35,17 @@ class SearchLeagueAdapter(
 
     override fun getItemCount() = leagueList.size
 
-    class ViewHolder(private val binding: ItemLeagueBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemLeagueBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: League.League) {
             binding.apply {
-                imageViewLogo.load(
-                    item.strLogo
-                )
+                item.strLogo?.let {
+                    imageViewLogo.load(
+                        it
+                    ) {
+                        crossfade(true)
+                    }
+                }
 
                 textViewLeagueName.text = item.strLeague
                 textViewCountry.text = item.strCountry
