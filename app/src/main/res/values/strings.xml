@@ -7,4 +7,7 @@
     <string name="choose_sport">Choose Sport</string>
     <string name="search_team_by_name">Search team by name</string>
     <string name="search">Search</string>
+    <string name="waiting_for_search">Waiting for search . . .</string>
+    <string name="data_not_found_try_other_filter">Data not found, try other filter</string>
+    <string name="something_wrong_please_try_again">Something wrong, please try again</string>
 </resources>

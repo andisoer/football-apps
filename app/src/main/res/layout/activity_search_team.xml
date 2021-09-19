@@ -77,6 +77,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textInputLayoutSearchTeam" />
 
+            <include
+                android:id="@+id/layoutSearch"
+                layout="@layout/layout_search"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayoutSearchTeam"
+                android:visibility="gone"/>
+
+            <include
+                android:id="@+id/layoutSomethingWrong"
+                layout="@layout/layout_something_wrong"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayoutSearchTeam"
+                android:visibility="gone"/>
+
+            <include
+                android:id="@+id/layoutEmptyData"
+                layout="@layout/layout_empty_data"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayoutSearchTeam"
+                android:visibility="gone"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

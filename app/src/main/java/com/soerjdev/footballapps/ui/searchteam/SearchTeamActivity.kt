@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.soerjdev.footballapps.databinding.ActivitySearchTeamBinding
 import com.soerjdev.footballapps.ui.detailteam.DetailTeamActivity
@@ -56,6 +55,7 @@ class SearchTeamActivity : AppCompatActivity() {
 
             if (league == null) {
                 textInputLayoutSearchTeam.show()
+                binding.layoutSearch.root.show()
             } else {
                 toolbarSearchTeam.title = "Teams in $league"
             }
@@ -87,19 +87,24 @@ class SearchTeamActivity : AppCompatActivity() {
         viewModel.searchedTeam.observe(this, { response ->
             when (response) {
                 is ResourceStatus.Loading -> {
-                    searchTeamAdapter.clearTeamList()
+                    binding.layoutSearch.root.gone()
                     binding.progressBarSearchTeam.show()
+                    binding.layoutSomethingWrong.root.gone()
+                    binding.layoutEmptyData.root.gone()
+                    searchTeamAdapter.clearTeamList()
                 }
                 is ResourceStatus.Success -> {
                     response.data?.let {
                         if (!it.teams.isNullOrEmpty())
                             searchTeamAdapter.setTeamList(it.teams)
+                        else
+                            binding.layoutEmptyData.root.show()
 
                         binding.progressBarSearchTeam.gone()
                     }
                 }
                 is ResourceStatus.Error -> {
-                    Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
+                    binding.layoutSomethingWrong.root.show()
                     binding.progressBarSearchTeam.gone()
                 }
 

@@ -82,16 +82,21 @@ class MainActivity : AppCompatActivity(), Toolbar.OnMenuItemClickListener {
             when (response) {
                 is ResourceStatus.Loading -> {
                     binding.progressBarSearchLeague.show()
+                    binding.layoutEmptyData.root.gone()
+                    binding.layoutSomethingWrong.root.gone()
                 }
                 is ResourceStatus.Success -> {
                     response.data?.let {
                         if (!it.countrys.isNullOrEmpty()) {
                             searchLeagueAdapter.setLeagueList(it.countrys)
+                        } else {
+                            binding.layoutEmptyData.root.show()
                         }
                     }
                     binding.progressBarSearchLeague.gone()
                 }
                 is ResourceStatus.Error -> {
+                    binding.layoutSomethingWrong.root.show()
                     binding.progressBarSearchLeague.gone()
                 }
             }

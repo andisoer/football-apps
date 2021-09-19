@@ -18,6 +18,8 @@
             android:id="@+id/toolbarDetailTeam"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:title="Detail Team"
+            app:titleTextColor="@color/white"
             app:navigationIcon="@drawable/ic_arrow_back_ios_dark" />
 
     </com.google.android.material.appbar.AppBarLayout>

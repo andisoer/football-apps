@@ -74,6 +74,7 @@ class ChooseCountryActivity : AppCompatActivity() {
                     binding.progressBarCHooseCountry.gone()
                 }
                 is ResourceStatus.Error -> {
+                    binding.layoutSomethingWrong.root.show()
                     binding.progressBarCHooseCountry.gone()
                 }
             }

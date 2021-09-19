@@ -71,6 +71,7 @@ class ChooseSportActivity : AppCompatActivity() {
                     binding.progressBarChooseSport.gone()
                 }
                 is ResourceStatus.Error -> {
+                    binding.layoutSomethingWrong.root.show()
                     binding.progressBarChooseSport.gone()
                 }
             }
