@@ -8,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import com.soerjdev.footballapps.databinding.ActivityMainBinding
 import com.soerjdev.footballapps.ui.choosecountry.ChooseCountryActivity
+import com.soerjdev.footballapps.ui.choosesport.ChooseSportActivity
 import com.soerjdev.footballapps.ui.searchteam.SearchTeamActivity
 import com.soerjdev.footballapps.utils.ResourceStatus
 import com.soerjdev.footballapps.utils.gone
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
 
     private var country = "Indonesia"
+    private var sport = "Soccer"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +50,11 @@ class MainActivity : AppCompatActivity() {
             buttonChooseCountry.setOnClickListener {
                 val intent = Intent(this@MainActivity, ChooseCountryActivity::class.java)
                 intentChooseCountry.launch(intent)
+            }
+
+            buttonChooseSport.setOnClickListener {
+                val intent = Intent(this@MainActivity, ChooseSportActivity::class.java)
+                intentChooseSport.launch(intent)
             }
         }
     }
@@ -83,7 +90,7 @@ class MainActivity : AppCompatActivity() {
     private fun getLeague() {
         searchLeagueAdapter.clearLeagueList()
         viewModel.searchLeague(
-            sport = "Soccer",
+            sport = sport,
             country = country
         )
     }
@@ -94,6 +101,17 @@ class MainActivity : AppCompatActivity() {
 
             if (extras != null) {
                 country = extras.getString(ChooseCountryActivity.CHOOSE_COUNTRY_KEY).toString()
+                getLeague()
+            }
+        }
+    }
+
+    private var intentChooseSport = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val extras = result.data?.extras
+
+            if (extras != null) {
+                sport = extras.getString(ChooseSportActivity.CHOOSE_SPORT_KEY).toString()
                 getLeague()
             }
         }
